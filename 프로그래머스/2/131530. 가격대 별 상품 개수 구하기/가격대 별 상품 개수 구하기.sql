@@ -1,0 +1,16 @@
+SELECT 
+    CASE 
+        WHEN price BETWEEN 0 AND 9999 THEN '0'
+        WHEN price BETWEEN 10000 AND 19999 THEN '10000'
+        WHEN price BETWEEN 20000 AND 29999 THEN '20000'
+        WHEN price BETWEEN 30000 AND 39999 THEN '30000'
+        WHEN price BETWEEN 40000 AND 49999 THEN '40000'
+        WHEN price BETWEEN 50000 AND 59999 THEN '50000'
+        WHEN price BETWEEN 60000 AND 69999 THEN '60000'
+        WHEN price BETWEEN 70000 AND 79999 THEN '70000'
+        ELSE '80000' -- 지정된 범위 외의 가격에 대한 처리
+    END AS price_group,
+    COUNT(*) AS products
+FROM product
+GROUP BY price_group
+ORDER BY price_group
